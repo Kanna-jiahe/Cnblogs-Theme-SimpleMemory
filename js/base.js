@@ -793,6 +793,7 @@ function Base() {
     this.setMenuData = function() {
         var introduceHtml    = $('#profile_block').html(),        // 个人信息
             sidebar          = $('#sidebar_recentposts ul li'),   // 最新随笔
+            recentComments   = $('#sidebar_recentcomments ul li'),// 最新评论
             toptags          = $('#sidebar_toptags ul li'),       // 我的标签
             sbClassify       = $('#sidebar_postcategory ul li'),  // 随笔分类
             sbRecord         = $('#sidebar_postarchive ul li'),   // 随笔档案
@@ -800,6 +801,7 @@ function Base() {
             topDiggPosts     = $('#TopDiggPostsBlock ul li'),     // 推荐排行
             menuIntroduce    = $('#introduce'),
             menuSidebar      = $('#sb-sidebarRecentposts'),
+            menuComment      = $('#sb-Comment'),
             menuToptags      = $('#sb-toptags'),
             menuClassify     = $('#sb-classify'),
             menuRecord       = $('#sb-record'),
@@ -809,10 +811,14 @@ function Base() {
         // 添加个人信息
         if ((typeof introduceHtml == 'string') && menuIntroduce.html() == '')
             menuIntroduce.html(tools.htmlFiltrationScript(introduceHtml));
-
+        
         // 添加最新随笔
         if (sidebar.length > 0 && menuSidebar.html() == '')
             menuSidebar.html(getMenuData(sidebar, 'icon-time_fill')).prev('.m-list-title').show();
+        
+        // 添加最新评论
+        if(recentComments.length > 0 && menuComment.html() == '')
+            menuComment.html(getMenuData(recentComments,'.icon-activity_fill')).prev('.m-list-title').show();
 
         // 添加我的标签
         if (toptags.length > 0 && menuToptags.html() == '')
