@@ -818,7 +818,7 @@ function Base() {
         
         // 添加最新评论
         if(recentComments.length > 0 && menuComment.html() == '')
-            menuComment.html(getMenuData(recentComments,'.icon-activity_fill')).prev('.m-list-title').show();
+            menuComment.html(getComment(recentComments)).prev('.m-list-title').show();
 
         // 添加我的标签
         if (toptags.length > 0 && menuToptags.html() == '')
@@ -850,6 +850,16 @@ function Base() {
              && topDiggPosts.length > 0
         ) {
             bndongJs.clearIntervalTimeId(timeIds.setMenuDataTId);
+        }
+        
+        function getComment(obj){
+            var html = '<div><ul>';
+            obj.each(function (i) {
+                var o = $($(obj[i]).html());
+                html += '<li>' + o.prop("outerHTML") + '</li>';
+            });
+            html += '</ul></div>';
+            return html;
         }
 
         function getMenuData(obj, icon) {
