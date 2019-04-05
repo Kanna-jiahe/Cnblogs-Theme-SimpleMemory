@@ -855,14 +855,8 @@ function Base() {
         function getComment(obj){
             var html = '<div><ul>';
             obj.each(function (i) {
-                var name = $(obj[i]).prop("className");
-                if(typeof name == 'recent_comment_title'){
-                    var o = $($(obj[i]).html());
-                    html += '<li>' + o.prop("outerHTML") + '</li>';
-                }else{
-                    var o = $(obj[i]).prop("innerText");
-                    html += '<li>' + o + '</li>';
-                }
+                var body = $(obj[i]).prop("innerHTML");
+                    html += '<li>' + body + '</li>';
             });
             html += '</ul></div>';
             return html;
