@@ -856,7 +856,8 @@ function Base() {
             var html = '<div><ul>';
             obj.each(function (i) {
                 var o = $($(obj[i]).html());
-                html += '<li>' + o.prop("outerHTML") + '</li>';
+                console.log(0);
+                //html += '<li>' + o.prop("outerHTML") + '</li>';
             });
             html += '</ul></div>';
             return html;
