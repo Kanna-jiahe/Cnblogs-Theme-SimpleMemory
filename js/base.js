@@ -856,11 +856,14 @@ function Base() {
             var html = '<div><ul>';
             obj.each(function (i) {
                 var name = $(obj[i]).prop("className");
+                var x = $(obj[i])[0].className;
+                console.log(name);
+                console.log(x);
                 if(name == 'recent_comment_title'){
-                    var o = $(obj[i]).html();
+                    var o = $($(obj[i]).html());
                     html += '<li>' + o.prop("outerHTML") + '</li>';
                 }else{
-                    var o = $(obj[i]).text();
+                    var o = $($(obj[i]).text());
                     html += '<li>' + o + '</li>';
                 }
             });
