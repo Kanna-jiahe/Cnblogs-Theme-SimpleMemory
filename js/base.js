@@ -809,7 +809,8 @@ function Base() {
             menuClassify     = $('#sb-classify'),
             menuRecord       = $('#sb-record'),
             menuTopview      = $('#sb-topview'),
-            menuTopDiggPosts = $('#sb-topDiggPosts');
+            menuTopDiggPosts = $('#sb-topDiggPosts'),
+            menuCustomList = $('#sb-menuCustomList');
 
         // 添加个人信息
         if ((typeof introduceHtml == 'string') && menuIntroduce.html() == '')
@@ -845,7 +846,7 @@ function Base() {
 
         // 添加自定义列表
         var customData = window.cnblogsConfig.menuCustomList;
-        if (Object.keys(customData).length > 0) {
+        if (Object.keys(customData).length > 0 && menuCustomList.html()=='') {
             $.each(customData, function (title, list) {
                 var html = '<div class="m-list-title" style="display: block;"><span>' + title + '</span></div>';
                 html += '<div class="m-icon-list"><div><ul>';
@@ -855,7 +856,7 @@ function Base() {
                     html += val[0] + '</a></li>';
                 });
                 html += '</ul></div></div>';
-                $('#menuCustomList').append(html);
+                $('#sb-menuCustomList').append(html);
             });
         }
 
