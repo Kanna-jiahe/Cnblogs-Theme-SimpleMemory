@@ -847,6 +847,7 @@ function Base() {
         function setComments(){
             if(recentComments.length > 0 && menuComment.html() == '')
                 menuComment.html(getComment(recentComments)).prev('.m-list-title').show();
+                bndongJs.clearIntervalTimeId(timeIds.setMenuCommentsID);
         }
 
         // 添加我的标签
