@@ -92,7 +92,7 @@ function Base() {
         var setMenuData = bndongJs.setMenuData();
         timeIds.setMenuIntroduceTId    = window.setInterval( setMenuData.setIntroduce, 1000 );
         timeIds.setMenuSidebarTId      = window.setInterval( setMenuData.setSidebar, 1000 );
-        timeIds.setMenuCommentsID      = window.setInterval( setMenuData.setComments,1000 );
+        timeIds.setMenuCommentsId      = window.setInterval( setMenuData.setComments,1000 );
         timeIds.setMenuToptagsTId      = window.setInterval( setMenuData.setToptags, 1000 );
         timeIds.setMenuClassifyTId     = window.setInterval( setMenuData.setClassify, 1000 );
         timeIds.setMenuRecordTId       = window.setInterval( setMenuData.setRecord, 1000 );
@@ -825,8 +825,7 @@ function Base() {
             menuClassify     = $('#sb-classify'),
             menuRecord       = $('#sb-record'),
             menuTopview      = $('#sb-topview'),
-            menuTopDiggPosts = $('#sb-topDiggPosts'),
-
+            menuTopDiggPosts = $('#sb-topDiggPosts');
 
         // 添加个人信息
         function setIntroduce() {
@@ -843,11 +842,12 @@ function Base() {
                 bndongJs.clearIntervalTimeId(timeIds.setMenuSidebarTId);
             }
         }
-
-        function setComments(){
+        
+        // 添加最新评论
+        function setComments() {
             if(recentComments.length > 0 && menuComment.html() == '')
                 menuComment.html(getComment(recentComments)).prev('.m-list-title').show();
-                bndongJs.clearIntervalTimeId(timeIds.setMenuCommentsID);
+                bndongJs.clearIntervalTimeId(timeIds.setMenuCommentsId);
         }
 
         // 添加我的标签
@@ -890,6 +890,7 @@ function Base() {
             }
         }
 
+        // 添加自定义列表
         function setCustomData() {
             var customData = window.cnblogsConfig.menuCustomList;
             if (Object.keys(customData).length > 0) {
@@ -907,7 +908,7 @@ function Base() {
                 });
             }
         }
-        
+
         function getComment(obj){
             var html = '<div><ul>';
             obj.each(function (i) {
@@ -943,6 +944,7 @@ function Base() {
         return {
             setIntroduce: setIntroduce,
             setSidebar: setSidebar,
+            setComments: setComments,
             setToptags: setToptags,
             setClassify: setClassify,
             setRecord: setRecord,
