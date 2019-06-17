@@ -24,6 +24,9 @@ if (initCheck()) {
         '            <!-- 最新随笔 -->' +
         '            <div class="m-list-title"><span>最新随笔</span></div>' +
         '            <div class="m-icon-list" id="sb-sidebarRecentposts"></div>' +
+        '            <!-- 最新评论 -->' +
+        '            <div class="m-list-title"><span>最新评论</span></div>'+
+        '            <div class="m-icon-list" id="sb-Comment"></div>'+
         '            <!-- 我的标签 -->' +
         '            <div class="m-list-title"><span>我的标签</span></div>' +
         '            <div class="m-icon-list" id="sb-toptags"></div>' +

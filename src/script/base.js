@@ -15,6 +15,7 @@ function Base() {
         timeIds    = {
             setMenuIntroduceTId    : null, // 菜单设置-个人信息定时器ID
             setMenuSidebarTId      : null, // 菜单设置-最新随笔定时器ID
+            setMenuCommentsID      : null, // 菜单设置-最新评论定时器ID
             setMenuToptagsTId      : null, // 菜单设置-我的标签定时器ID
             setMenuClassifyTId     : null, // 菜单设置-随笔分类定时器ID
             setMenuRecordTId       : null, // 菜单设置-随笔档案定时器ID
@@ -90,6 +91,7 @@ function Base() {
         let setMenuData = bndongJs.setMenuData();
         timeIds.setMenuIntroduceTId    = window.setInterval( setMenuData.setIntroduce, 1000 );
         timeIds.setMenuSidebarTId      = window.setInterval( setMenuData.setSidebar, 1000 );
+        timeIds.setMenuCommentsId      = window.setInterval( setMenuData.setComments,1000 );
         timeIds.setMenuToptagsTId      = window.setInterval( setMenuData.setToptags, 1000 );
         timeIds.setMenuClassifyTId     = window.setInterval( setMenuData.setClassify, 1000 );
         timeIds.setMenuRecordTId       = window.setInterval( setMenuData.setRecord, 1000 );
@@ -373,6 +375,7 @@ function Base() {
     this.setMenuData = function() {
         var introduceHtml    = $('#profile_block').html(),        // 个人信息
             sidebar          = $('#sidebar_recentposts ul li'),   // 最新随笔
+            recentComments   = $('#sidebar_recentcomments ul li'),// 最新评论
             toptags          = $('#sidebar_toptags ul li'),       // 我的标签
             sbClassify       = $('#sidebar_postcategory ul li'),  // 随笔分类
             sbRecord         = $('#sidebar_postarchive ul li'),   // 随笔档案
@@ -380,6 +383,7 @@ function Base() {
             topDiggPosts     = $('#TopDiggPostsBlock ul li'),     // 推荐排行
             menuIntroduce    = $('#introduce'),
             menuSidebar      = $('#sb-sidebarRecentposts'),
+            menuComment      = $('#sb-Comment'),
             menuToptags      = $('#sb-toptags'),
             menuClassify     = $('#sb-classify'),
             menuRecord       = $('#sb-record'),
@@ -400,6 +404,13 @@ function Base() {
                 menuSidebar.html(getMenuData(sidebar, 'icon-time_fill')).prev('.m-list-title').show();
                 bndongJs.clearIntervalTimeId(timeIds.setMenuSidebarTId);
             }
+        }
+
+        // 添加最新评论
+        function setComments() {
+            if(recentComments.length > 0 && menuComment.html() == '')
+                menuComment.html(getComment(recentComments)).prev('.m-list-title').show();
+                bndongJs.clearIntervalTimeId(timeIds.setMenuCommentsId);
         }
 
         // 添加我的标签
@@ -461,6 +472,22 @@ function Base() {
             }
         }
 
+        function getComment(obj){
+            var html = '<div><ul>';
+            obj.each(function (i) {
+                var x = $(obj[i])[0].className;
+                var body = $(obj[i]).prop("innerHTML");
+                if( x == "recent_comment_title"){
+                    html += '<li>' + body + '</li>';
+                }else{
+                    html += '<li><div>' + body + '</div></li>';
+                }
+
+            });
+            html += '</ul></div>';
+            return html;
+        }
+
         function getMenuData(obj, icon) {
             var html = '<div><ul>';
             var ret  = /^[1-9]+[0-9]*$/;
@@ -481,6 +508,7 @@ function Base() {
             setIntroduce: setIntroduce,
             setSidebar: setSidebar,
             setToptags: setToptags,
+            setComments: setComments,
             setClassify: setClassify,
             setRecord: setRecord,
             setTopview: setTopview,
@@ -996,7 +1024,7 @@ function Base() {
                         var patch = op.text();
                         var html = '<img class="comment-avatar" src="'+patch+'"/>';
                     } else {
-                        var html = '<img class="comment-avatar" src="https://files.cnblogs.com/files/bndong/no_avatar.gif"/>';
+                        var html = '<img class="comment-avatar" src="https://www.cnblogs.com/images/cnblogs_com/yinghualuowu/760257/t_no_avatar.gif"/>';
                     }
                     $(commentList[i]).before(html);
                 }
