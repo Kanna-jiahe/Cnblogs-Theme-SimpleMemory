@@ -185,6 +185,26 @@ body{
 	padding: 0.3rem 4%;
 }
 
+.icon-list div , .m-icon-list div{
+    line-height: 1.4;
+    font-size: 1.4rem;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: rgb(143, 143, 143) !important;
+    font-family: "Merriweather","Open Sans","Microsoft Jhenghei","Microsoft Yahei",sans-serif;
+    letter-spacing: 0.01rem;
+}
+
+.icon-list div {
+	padding: 0.6rem 4%;
+}
+
+.m-icon-list div {
+	padding: 0.3rem 4%;
+}
+
 .icon-list li:before {
     display: inline-block;
     font-size: 1.2rem;
